@@ -61,8 +61,6 @@ export const loginUser = async (payload) => {
   });
 };
 
-
-
 export const logoutUser = async (sessionId) => {
   await SessionCollection.deleteOne({ _id: sessionId });
 };
@@ -138,7 +136,7 @@ export const requestResetToken = async (email) => {
   const template = handlebars.compile(templateSource);
   const html = template({
     name: user.name,
-    link: `${getEnvVar('APP_DOMAIN')}/reset-password?token=${resetToken}`,
+    link: `${getEnvVar('APP_FRONTEND_URL')}/reset-password?token=${resetToken}`,
   });
 
   try {
